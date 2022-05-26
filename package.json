@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mackawara/100devsbackend/issues"
   },
-  "homepage": "https://github.com/mackawara/100devsbackend#readme"
+  "homepage": "https://github.com/mackawara/100devsbackend#readme",
+  "dependencies": {
+    "figlet": "^1.5.2"
+  }
 }
