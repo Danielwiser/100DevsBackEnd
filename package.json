@@ -1,0 +1,20 @@
+{
+  "name": "100devsbackend",
+  "version": "1.0.0",
+  "description": "#100devs homework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mackawara/100devsbackend.git"
+  },
+  "author": "mac kawara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mackawara/100devsbackend/issues"
+  },
+  "homepage": "https://github.com/mackawara/100devsbackend#readme"
+}
