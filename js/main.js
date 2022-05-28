@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
   console.log("dom content loaded");
-  document.querySelector("#clickMe").addEventListener("click", makeReq);
+  /*  document.querySelector("#clickMe").addEventListener("click", makeReq); */
 
   async function makeReq() {
     const userName = document.querySelector("#userName").value;
@@ -15,6 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   /* returnns an array of buttons */
   const buttonList = document.querySelectorAll("button");
+
   /* loops through the buttons */
   console.log(buttonList);
   for (let index = 0; index < buttonList.length; index++) {
@@ -29,9 +30,10 @@ window.addEventListener("DOMContentLoaded", () => {
       } else if (button.name == "scissors") {
         request.type = "scissors";
       }
+      
 
       const responseList = ["rock", "paper", "scissors"]; //range of responses that we will loop over using Math.random
-      const indexNumber = Math.floor(Math.random() * 3); // generate a random number between 0and 3
+      const indexNumber = Math.floor(Math.random() * 3); // generate a random number between 0and 2
       const response = responseList[indexNumber]; // genrates a random response between rock paper and scissors
       /* console.log(
         ` the player used ${request.type} and the computer returned ${response}`
@@ -62,6 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
         redirect: "follow",
         body: JSON.stringify(request),
       }; */
+      console.log(response);
     });
   }
 
