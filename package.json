@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/mackawara/100devsbackend#readme",
   "dependencies": {
-    "figlet": "^1.5.2"
+    "bcrypt": "^5.0.1",
+    "figlet": "^1.5.2",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
   }
 }
