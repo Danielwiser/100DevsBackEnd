@@ -6,31 +6,12 @@ const passport = require("passport");
 const passportLocal = require("passport-local");
 const fs = require('fs');
 
+const express=requie("express")
+const app=express()
 
 
 const hostname = "127.0.0.1";
 const port = 3000;
-/* create Server usinf HTTP  */
-const data= {name:"Mac"}
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.writeHead(200, { "Content-Type": "text/html" });
-
-  var url = req.url;
-
-  if (url === "/") {
-    res.write(data.name)
-    res.end();
-  } else if (url === "/contact") {
-    res.write(" Welcome to contact us page");
-    res.end();
-  }
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
 
 async function hashFunction(hashTarget, salt) {
   const hashedTarget = await bcrypt.hash(hashTarget, salt);
