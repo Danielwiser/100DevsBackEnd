@@ -4,29 +4,34 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const passportLocal = require("passport-local");
-const fs = require('fs');
-
-
+const fs = require("fs").promises;
+const { dirname } = require("path");
 
 const hostname = "127.0.0.1";
 const port = 3000;
 /* create Server usinf HTTP  */
-const data= {name:"Mac"}
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
+
+console.log(__dirname + "/index.html");
+const server = http.createServer(requestListener);
+async function requestListener(req, res) {
+  const htmlHome = await fs.readFile(__dirname + "/public/index.html");
+  const about = await fs.readFile(__dirname + "/public/index.html");
+
   res.setHeader("Content-Type", "text/plain");
   res.writeHead(200, { "Content-Type": "text/html" });
+  res.end(htmlHome);
+  /* ;
 
   var url = req.url;
 
   if (url === "/") {
-    res.write(data.name)
+    res.write(html);
     res.end();
   } else if (url === "/contact") {
     res.write(" Welcome to contact us page");
     res.end();
-  }
-});
+  } */
+}
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
