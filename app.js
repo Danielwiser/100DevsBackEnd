@@ -15,7 +15,7 @@ console.log(__dirname + "/index.html");
 const server = http.createServer(requestListener);
 async function requestListener(req, res) {
   const htmlHome = await fs.readFile(__dirname + "/public/index.html");
-  const about = await fs.readFile(__dirname + "/public/index.html");
+  const about = await fs.readFile(__dirname + "/public/about.html");
 
   res.setHeader("Content-Type", "text/plain");
   res.writeHead(200, { "Content-Type": "text/html" });
