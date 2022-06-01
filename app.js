@@ -16,34 +16,33 @@ const port = 3000;
 console.log(__dirname + "/index.html");
 const server = http.createServer(requestListener);
 async function requestListener(req, res) {
-  const htmlHome = await fs.readFile(
-    "/Users/mackawara/Desktop/rpositories/100devsbackend/public/index.html"
-  );
-  //const about = await fs.readFile(__dirname + "/public/about.html");
+  const htmlHome = await fs.readFile(__dirname + "/public/index.html");
 
+  const styleCSS = await fs.readFile(__dirname + "/public/css/style.css");
+  //const about = await fs.readFile(__dirname + "/public/about.html");
+  console.log(__dirname);
   res.setHeader("Content-Type", "text/plain");
-  res.writeHead(200, { "Content-Type": "text/html" });
   /*  res.end(htmlHome); */
 
   var url = req.url;
 
   if (url === "/") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    console.log("home page");
     res.write(htmlHome);
     res.end();
-  } else if (url === "/contact") {
-    res.write(" Welcome to contact us page");
+  } else if (url == "/js/main.js") {
+    res.writeHead(200, { "Content-Type": "text/js" });
+    console.log("main js loading");
+    const mainJS = await fs.readFile(__dirname + "/public/js/main.js");
+    res.write(mainJS);
     res.end();
   } else if (url == "/css/style.css") {
-    fs.readFile("./public/css/style.css", function (err, data) {
-      res.write(data);
-      res.end();
-    });
-  } else if (url == "./public/css/style.css") {
-    fs.readFile("./public/css/style.css", function (err, data) {
-      res.write(data);
-      res.end();
-    });
+    res.writeHead(200, { "Content-Type": "text/css" });
+    res.write(styleCSS);
+    res.end();
   } else if (url == "./public/js/main.js") {
+    console.log("js request");
     readWrite("./public/js/main.js", "text/javascript");
   } else {
     figlet("404!!", function (err, data) {
