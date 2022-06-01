@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/mackawara/100devsbackend#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "figlet": "^1.5.2",
+<<<<<<< HEAD
     "heroku": "^7.60.2",
+=======
+    "heroku": "^7.33.3",
+    "bcrypt": "^5.0.1",
+>>>>>>> 44bc0113bdee5d7a08f340bb675e8cb03375999f
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
