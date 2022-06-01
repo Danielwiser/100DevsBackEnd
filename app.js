@@ -1,36 +1,65 @@
 const figlet = require("figlet");
 const http = require("http");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const passport = require("passport");
-const passportLocal = require("passport-local");
+const url = require("url");
+//const jwt = require("jsonwebtoken");
+//const bcrypt = require("bcrypt");
+//const passport = require("passport");
+//const passportLocal = require("passport-local");
 const fs = require("fs").promises;
 const { dirname } = require("path");
 
 const hostname = "127.0.0.1";
 const port = 3000;
+//const page = url.parse(req.url).pathname;
 /* create Server usinf HTTP  */
 
 console.log(__dirname + "/index.html");
 const server = http.createServer(requestListener);
+
 async function requestListener(req, res) {
   const htmlHome = await fs.readFile(__dirname + "/public/index.html");
-  const about = await fs.readFile(__dirname + "/public/about.html");
-
-  res.setHeader("Content-Type", "text/plain");
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.end(htmlHome);
-  /* ;
+  const styleCSS = await fs.readFile(__dirname + "/public/css/style.css");
+  const mainJS = await fs.readFile(__dirname + "/public/js/main.js");
 
   var url = req.url;
 
   if (url === "/") {
-    res.write(html);
+    res.writeHead(200, { "Content-Type": "text/html" });
+    console.log("home page");
+    res.write(htmlHome);
     res.end();
-  } else if (url === "/contact") {
-    res.write(" Welcome to contact us page");
+  } else if (url === "/rockpaperscissors") {
+    const responseList = ["rock", "paper", "scissors"]; //range of responses that we will loop over using Math.random
+    const indexNumber = Math.floor(Math.random() * 3); // generate a random number between 0and 2
+    const response = responseList[indexNumber]; // genrates a random response between rock paper and scissors
+    res.writeHead(200, { "Content-Type": "application/json" });
+    const resObj = { response: response };
+    //res.write({ response: response });
+    res.end(JSON.stringify(resObj));
+    console.log(JSON.stringify(resObj));
+  } else if (url == "/js/main.js") {
+    res.writeHead(200, { "Content-Type": "text/js" });
+    console.log("main js loading");
+    res.write(mainJS);
     res.end();
-  } */
+  } else if (url == "/css/style.css") {
+    res.writeHead(200, { "Content-Type": "text/css" });
+    res.write(styleCSS);
+    res.end();
+  } else if (url == "./public/js/main.js") {
+    console.log("js request");
+    readWrite("./public/js/main.js", "text/javascript");
+  } else {
+    figlet("404!!", function (err, data) {
+      if (err) {
+        console.log("Something went wrong...");
+        console.dir(err);
+        return;
+      }
+      res.write(data);
+      res.end();
+    });
+  }
 }
 
 server.listen(port, hostname, () => {
