@@ -19,7 +19,7 @@ const buttonList = document.querySelectorAll("button");
 console.log(buttonList);
 for (let index = 0; index < buttonList.length; index++) {
   const button = buttonList[index];
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
     let request = {}; // this is the request object that we will send with the fetch
     /* each of our buttons in the htm needs an HTM name atribute this is what we will use to set wheter its rock paper or scissors*/
     if (button.name == "rock") {
@@ -29,8 +29,8 @@ for (let index = 0; index < buttonList.length; index++) {
     } else if (button.name == "scissors") {
       request.type = "scissors";
     }
-const address="/rockpaperscissors"
-const options = {
+    const address = "/rockpaperscissors";
+    const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,11 +38,12 @@ const options = {
       mode: "cors",
       body: JSON.stringify(request),
     };
-    console.log(request)
-const fetchAnswer= await fetch(address,options)
-    const responseList = ["rock", "paper", "scissors"]; //range of responses that we will loop over using Math.random
-    const indexNumber = Math.floor(Math.random() * 3); // generate a random number between 0and 2
-    const response = responseList[indexNumber]; // genrates a random response between rock paper and scissors
+    console.log(request);
+    const fetchAnswer = await fetch(address, options);
+    const resObject = await fetchAnswer.json();
+    const response = resObject.response;
+    console.log(response);
+
     /* console.log(
         ` the player used ${request.type} and the computer returned ${response}`
       );
