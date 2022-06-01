@@ -17,13 +17,9 @@ console.log(__dirname + "/index.html");
 const server = http.createServer(requestListener);
 async function requestListener(req, res) {
   const htmlHome = await fs.readFile(__dirname + "/public/index.html");
-
   const styleCSS = await fs.readFile(__dirname + "/public/css/style.css");
-  //const about = await fs.readFile(__dirname + "/public/about.html");
-  console.log(__dirname);
-  res.setHeader("Content-Type", "text/plain");
-  /*  res.end(htmlHome); */
-
+  const mainJS = await fs.readFile(__dirname + "/public/js/main.js");
+  
   var url = req.url;
 
   if (url === "/") {
@@ -34,7 +30,6 @@ async function requestListener(req, res) {
   } else if (url == "/js/main.js") {
     res.writeHead(200, { "Content-Type": "text/js" });
     console.log("main js loading");
-    const mainJS = await fs.readFile(__dirname + "/public/js/main.js");
     res.write(mainJS);
     res.end();
   } else if (url == "/css/style.css") {
