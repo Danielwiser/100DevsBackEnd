@@ -44,24 +44,34 @@ for (let index = 0; index < buttonList.length; index++) {
     const response = resObject.response;
     console.log(response);
 
-    /* console.log(
-        ` the player used ${request.type} and the computer returned ${response}`
-      );
- */
+    const result = document.getElementById("gameResult");
+    const userWin = () => {
+      result.innerText = `Congraulations, you win`;
+      result.style.color = "green";
+    };
+    const computerWin = () => {
+      result.innerText = `Sorry, you lose`;
+      result.style.color = "red";
+    };
+    const draw = () => {
+      result.innerText = `Its a stalemate, try again `;
+      result.style.color = "yellow";
+    };
+
     if (
       (request.type == "paper" && response == "scissors") ||
       (request.type == "rock" && response == "paper") ||
       (request.type == "scissors" && response == "rock")
     ) {
-      console.log("Sorry you lose");
+      computerWin();
     } else if (
       (request.type == "rock" && response == "scissors") ||
       (request.type == "paper" && response == "rock") ||
       (request.type == "scissors" && response == "paper")
     ) {
-      console.log("Congratulations You win");
+      userWin();
     } else if (request.type == response) {
-      console.log("Hooo , its a stalemate please play again");
+      draw();
     }
 
     /* const options = {
