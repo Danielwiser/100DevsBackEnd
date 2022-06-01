@@ -29,7 +29,17 @@ for (let index = 0; index < buttonList.length; index++) {
     } else if (button.name == "scissors") {
       request.type = "scissors";
     }
-
+const address="/rockpaperscissors"
+const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify(request),
+    };
+    console.log(request)
+const fetchAnswer= await fetch(address,options)
     const responseList = ["rock", "paper", "scissors"]; //range of responses that we will loop over using Math.random
     const indexNumber = Math.floor(Math.random() * 3); // generate a random number between 0and 2
     const response = responseList[indexNumber]; // genrates a random response between rock paper and scissors
