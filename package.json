@@ -20,6 +20,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "figlet": "^1.5.2",
+    "heroku": "^7.60.2",
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
