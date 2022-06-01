@@ -15,11 +15,12 @@ const port = 3000;
 
 console.log(__dirname + "/index.html");
 const server = http.createServer(requestListener);
+
 async function requestListener(req, res) {
   const htmlHome = await fs.readFile(__dirname + "/public/index.html");
   const styleCSS = await fs.readFile(__dirname + "/public/css/style.css");
   const mainJS = await fs.readFile(__dirname + "/public/js/main.js");
-  
+
   var url = req.url;
 
   if (url === "/") {
@@ -27,6 +28,15 @@ async function requestListener(req, res) {
     console.log("home page");
     res.write(htmlHome);
     res.end();
+  } else if (url === "/rockpaperscissors") {
+    const responseList = ["rock", "paper", "scissors"]; //range of responses that we will loop over using Math.random
+    const indexNumber = Math.floor(Math.random() * 3); // generate a random number between 0and 2
+    const response = responseList[indexNumber]; // genrates a random response between rock paper and scissors
+    res.writeHead(200, { "Content-Type": "application/json" });
+    const resObj = { response: response };
+    //res.write({ response: response });
+    res.end(JSON.stringify(resObj));
+    console.log(JSON.stringify(resObj));
   } else if (url == "/js/main.js") {
     res.writeHead(200, { "Content-Type": "text/js" });
     console.log("main js loading");
